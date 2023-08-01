@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
     flowise:
@@ -6,7 +6,7 @@ services:
         image: flowiseai/flowise
         restart: always
         environment:
-            - PORT=${PORT}
+            - PORT=${FLOWISE_PORT}
             - FLOWISE_USERNAME=${FLOWISE_USERNAME}
             - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
             - DATABASE_PATH=${DATABASE_PATH}
@@ -15,7 +15,48 @@ services:
             - EXECUTION_MODE=${EXECUTION_MODE}
             - DEBUG=${DEBUG}
         ports:
-            - '${PORT}:${PORT}'
+            - '${FLOWISE_PORT}:${FLOWISE_PORT}'
         volumes:
             - ~/.flowise:/root/.flowise
         command: /bin/sh -c "sleep 3; flowise start"
+
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        restart: always
+        environment:
+            - PORT=${BACKEND_PORT}
+            - CHAT=${FLOWISE_PORT}
+            - DB_HOST=${DB_HOST}
+            - DB_PORT=${DB_PORT}
+            - DB_USER=${DB_USER}
+            - DB_PASS=${DB_PASS}
+            - DB_NAME=${DB_NAME}
+            - SMTP_HOST=${SMTP_HOST}
+            - SMTP_PORT=${SMTP_PORT}
+            - SMTP_USER=${SMTP_USER}
+            - SMTP_PASS=${SMTP_PASS}
+            - MAIL_FROM=${MAIL_FROM}
+            - JWT_SECRET=${JWT_SECRET}
+        ports:
+            - '${BACKEND_PORT}:${BACKEND_PORT}'
+
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        restart: always
+        environment:
+            - API_ENDPOINT=${BACKEND_DN}
+        ports:
+            - '${FRONTEND_PORT}:${FRONTEND_PORT}'
+
+
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASS}

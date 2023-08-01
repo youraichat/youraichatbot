@@ -1,0 +1,46 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "SET PORT=4000 && next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.1",
+    "@types/node": "20.2.1",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "axios": "^1.4.0",
+    "dayjs": "^1.11.8",
+    "dexie": "^3.2.3",
+    "effector": "^22.8.6",
+    "effector-react": "^22.5.3",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.2",
+    "next": "13.4.2",
+    "nextjs-cookie": "^1.0.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-loading-icons": "^1.1.0",
+    "react-markdown": "^8.0.7",
+    "react-speech-recognition": "^3.10.0",
+    "react-toastify": "^9.1.3",
+    "reactflow": "^11.7.2",
+    "regenerator-runtime": "^0.13.11",
+    "sharp": "^0.32.1",
+    "typescript": "5.0.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.0.1",
+    "@types/react-speech-recognition": "^3.9.2",
+    "@types/uuid": "^9.0.1"
+  }
+}
