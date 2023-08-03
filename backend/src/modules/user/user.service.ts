@@ -1,9 +1,9 @@
-import { Injectable } from "@nestjs/common";
+import {Injectable} from "@nestjs/common";
 import * as bcrypt from "bcrypt";
 import {USER_ROLE, UserEntity} from "@modules/user/user.entity";
-import { InjectRepository } from "@nestjs/typeorm";
-import { In, Repository } from "typeorm";
-import { PromptEntity } from "@modules/prompt/prompt.entity";
+import {InjectRepository} from "@nestjs/typeorm";
+import {In, Repository} from "typeorm";
+import {PromptEntity} from "@modules/prompt/prompt.entity";
 import "dotenv/config";
 
 @Injectable()
@@ -13,7 +13,8 @@ export class UserService {
         private userRepository: Repository<UserEntity>,
         @InjectRepository(PromptEntity)
         private promptRepository: Repository<PromptEntity>,
-    ) {}
+    ) {
+    }
 
     async createUserService(user) {
         let hash: string;
@@ -31,15 +32,15 @@ export class UserService {
     }
 
     async getUserByAttrService(attr: any) {
-        return this.userRepository.findOne({ where: { ...attr }, relations: ["prompts"] });
+        return this.userRepository.findOne({where: {...attr}, relations: ["prompts"]});
     }
 
     async updateUserService(id: string, user: any) {
-        const u = await this.userRepository.findOne({ where: { id: id } });
+        const u = await this.userRepository.findOne({where: {id: id}});
 
         if (user.prompts) {
             console.log(user.prompts);
-            const prompts = await this.promptRepository.find({ where: { id: In(user.prompts) } });
+            const prompts = await this.promptRepository.find({where: {id: In(user.prompts)}});
 
             console.log(prompts);
             u.prompts = prompts;
@@ -59,7 +60,7 @@ export class UserService {
     }
 
     async usersService() {
-        return this.userRepository.find({ relations: ["prompts"] });
+        return this.userRepository.find({relations: ["prompts"]});
     }
 
 
@@ -80,9 +81,13 @@ export class UserService {
         const password = user.password;
         const hash = await bcrypt.hash(password, saltOrRounds);
 
-        return await this.userRepository.save({
+        await this.userRepository.save({
             ...user,
             password: hash,
         });
+
+        return {
+            success: true
+        }
     }
 }

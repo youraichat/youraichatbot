@@ -100,6 +100,23 @@ ex:
 !-- Flowise: flowise.youraichatbot.com
 
 
+### Create Admin User
+On your .env file you can set it
+```angular2html
+DEFAULT_ADMIN_EMAIL=                      #DEFAULT ADMIN email - required
+DEFAULT_ADMIN_FIRSTNAME=                  #DEFAULT ADMIN Firstname - required
+DEFAULT_ADMIN_LASTNAME=                   #DEFAULT ADMIN Lastname - required
+DEFAULT_ADMIN_PASSWORD=                   #DEFAULT ADMIN PASSWORD - required
+```
+After it you can run the api call
+
+```angular2html
+GET
+[Your backend url]/user/init
+
+ex: https://api.youraichatbot.com/user/init
+```
+
 ### Issue Report
 
 Github
