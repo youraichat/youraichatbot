@@ -98,3 +98,15 @@ ex:
 !-- Frontend: mgmt.youraichatbot.com
 
 !-- Flowise: flowise.youraichatbot.com
+
+
+### Issue Report
+
+Github
+
+https://github.com/youraichat/youraichatbot/issues
+
+
+Discord
+
+https://discord.gg/8vHtX34cJe
