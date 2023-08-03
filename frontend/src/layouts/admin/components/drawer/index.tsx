@@ -1,15 +1,28 @@
 import React, {FC} from 'react';
-import {Avatar, Stack, Typography} from "@mui/material";
+import {Avatar, IconButton, Stack, Typography} from "@mui/material";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
 import ListItemText from "@mui/material/ListItemText";
 import {CSSObject, styled, Theme, useTheme} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import DrawerHeader from "./header";
-import {AutoFixHigh, Logout, PeopleAlt, Settings, ThumbUpAlt} from "@mui/icons-material";
+import {
+    AutoAwesome,
+    AutoFixHigh,
+    BarChart,
+    DocumentScanner,
+    Logout,
+    PeopleAlt,
+    Settings,
+    ThumbUpAlt
+} from "@mui/icons-material";
 import {logoutFx} from "@/model/auth/effect";
 import {useRouter} from "next/router";
 import {USER_ROLE} from "@/utils/types/user.type";
@@ -58,6 +71,12 @@ const AdminLayoutDrawer: FC<Props> = (props) => {
             link: "/admin/settings/",
             icon: <Settings/>,
             title: 'Settings'
+        },
+        {
+            id: 'flowise',
+            link: process.env.FLOWISE_DN || "https://flowise.youraichatbot.com/",
+            icon: <AutoAwesome/>,
+            title: 'Flowise'
         }
     ]
 
@@ -128,11 +147,13 @@ const AdminLayoutDrawer: FC<Props> = (props) => {
             <List>
                 {(auth?.user?.role === USER_ROLE.USER ? userMenus : menus).map((menu, index) => (
                     <ListItem
-                        onClick={()=>{router.push(menu.link)}}
                         key={menu.id}
                         disablePadding
                         sx={{display: 'block'}}>
                         <ListItemButton
+                            onClick={()=>{!menu.link.includes("http") && router.push(menu.link)}}
+                            href={menu.link.includes("http") ? menu.link : ""}
+                            target={menu.link.includes("http") ? "_blank" : "_self"}
                             sx={{
                                 minHeight: 48,
                                 justifyContent: open ? 'initial' : 'center',

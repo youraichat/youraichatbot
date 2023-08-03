@@ -166,7 +166,7 @@ const AppHeader: FC = () => {
                             <List>
                                 <ListItemButton
                                     disabled={!auth.isAuth}
-                                    onClick={()=>{router.push("/backend/profile")}}>
+                                    onClick={()=>{router.push("/admin/profile")}}>
                                     <ListItemIcon>
                                         <VerifiedUserOutlined />
                                     </ListItemIcon>

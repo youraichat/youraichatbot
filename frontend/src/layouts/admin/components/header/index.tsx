@@ -108,6 +108,7 @@ const AdminLayoutHeader: FC<Props> = (props) => {
                                 variant="rounded"
                                 src={(process.env.API_ENDPOINT || "") + auth?.user?.photo}
                                 sx={{
+                                    background: "transparent",
                                     fontWeight: 800,
                                     color: theme.palette.primary.contrastText
                                 }}>
@@ -150,14 +151,14 @@ const AdminLayoutHeader: FC<Props> = (props) => {
                             open={pop}>
                             <List component="nav" aria-label="main mailbox folders">
                                 <ListItem
-                                    onClick={()=>{router.push("/backend/profile")}}>
+                                    onClick={()=>{router.push("/admin/profile")}}>
                                     <ListItemIcon>
                                         <ManageAccounts />
                                     </ListItemIcon>
                                     <ListItemText primary={<b>Your Profile</b>} />
                                 </ListItem>
                                 <ListItem
-                                    onClick={()=>{router.push("/backend/prompt")}}>
+                                    onClick={()=>{router.push("/admin/prompt")}}>
                                     <ListItemIcon>
                                         <AutoFixHigh />
                                     </ListItemIcon>

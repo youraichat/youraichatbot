@@ -104,12 +104,16 @@ const PromptEditPage: FC = () => {
                         </Button>
                     </Stack>
                     <Stack direction="row">
-                        <Button
-                            onClick={()=>{setAdd(true)}}
-                            startIcon={<AddOutlined/>}
-                            variant="contained">
-                            New Prompt
-                        </Button>
+                        {
+                            (auth.user?.role === USER_ROLE.ADMIN || auth?.user?.role === USER_ROLE.MANAGER) && (
+                                <Button
+                                    onClick={()=>{setAdd(true)}}
+                                    startIcon={<AddOutlined/>}
+                                    variant="contained">
+                                    New Prompt
+                                </Button>
+                            )
+                        }
                         <NewPrompt refresh={getHandle} setOpen={setAdd} open={add}/>
                         <EditPrompt refresh={getHandle} setOpen={setEdit} open={edit} prompt={prt}/>
                         <Dialog

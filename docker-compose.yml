@@ -67,6 +67,7 @@ services:
         restart: always
         environment:
             - API_ENDPOINT=${BACKEND_DN}
+            - FLOWISE_DN=${FLOWISE_DN}
         ports:
             - '${FRONTEND_PORT}:${FRONTEND_PORT}'
 

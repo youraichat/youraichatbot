@@ -145,7 +145,7 @@ const ChatForm: FC<Props> = (props) => {
                                             }>
                                             <Button
                                                 onClick={() => {
-                                                    router.push("/backend")
+                                                    router.push("/admin")
                                                 }}
                                                 sx={{height: 42}}
                                                 variant="outlined"

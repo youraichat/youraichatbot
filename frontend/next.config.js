@@ -17,10 +17,12 @@ const nextConfig = {
         ]
     },
     env: {
-        API_ENDPOINT: process.env.API_ENDPOINT || "http://localhost:5000"
+        FLOWISE_DN: process.env.FLOWISE_DN,
+        API_ENDPOINT: process.env.API_ENDPOINT
     },
     publicRuntimeConfig: {
-        API_ENDPOINT: process.env.API_ENDPOINT || "http://localhost:5000"
+        API_ENDPOINT: process.env.API_ENDPOINT || "http://localhost:5000",
+        FLOWISE_DN: process.env.FLOWISE_DN,
     }
 }
 

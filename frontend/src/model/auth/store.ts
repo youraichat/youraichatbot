@@ -25,7 +25,7 @@ const $auth = createStore(initState || initAuth)
 
 
 export type AuthType = {
-    role: "user" | "backend";
+    role: "user" | "admin";
     isAuth: boolean;
     token: string | null;
     username: string;

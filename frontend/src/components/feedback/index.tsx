@@ -1,12 +1,10 @@
 import React, {FC, Fragment, useEffect, useState} from 'react';
 import SpeedDial from "@mui/material/SpeedDial";
-import {CloseOutlined, Comment, RateReview, ThumbDown, ThumbsUpDown, ThumbUp, UploadOutlined} from "@mui/icons-material"
+import {ThumbDown, ThumbsUpDown, ThumbUp} from "@mui/icons-material"
 import {
     Box,
-    Button, Checkbox,
-    Fade, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem,
-    Modal, Paper,
-    Rating, Select,
+    Button, Fade, MenuItem,
+    Modal, Rating, Select,
     SpeedDialAction,
     Stack,
     TextField,
@@ -15,7 +13,6 @@ import {
     useTheme
 } from "@mui/material";
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SquareButton from "@/components/shared/button/square";
 import {useStore} from "effector-react";
 import $conversation from "@/model/conversation/store";
 import {createFeedbackApi} from "@/api";
