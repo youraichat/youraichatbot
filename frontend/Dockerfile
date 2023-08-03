@@ -1,7 +1,7 @@
-FROM node:18
+FROM node:18-alpine
 
 # Create web directory
-WORKDIR /
+WORKDIR /usr/src/frontend
 COPY package*.json ./
 RUN npm install
 COPY . ./

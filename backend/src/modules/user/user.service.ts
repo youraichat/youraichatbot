@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import * as bcrypt from "bcrypt";
-import { UserEntity } from "@modules/user/user.entity";
+import {USER_ROLE, UserEntity} from "@modules/user/user.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { In, Repository } from "typeorm";
 import { PromptEntity } from "@modules/prompt/prompt.entity";
+import "dotenv/config";
 
 @Injectable()
 export class UserService {
@@ -59,5 +60,29 @@ export class UserService {
 
     async usersService() {
         return this.userRepository.find({ relations: ["prompts"] });
+    }
+
+
+    async seedService() {
+
+        const user: any = {
+            email: process.env.DEFAULT_EMAIL || "test@test.com",
+            password: process.env.DEFAULT_PASS || "1234",
+            firstname: process.env.DEFAULT_FN || "1234",
+            lastname: process.env.DEFAULT_FN || "1234",
+            emailVerified: true,
+            vToken: process.env.DEFAULT_EMAIL || "test@test.com",
+            vCode: "123456",
+            role: USER_ROLE.ADMIN
+        }
+
+        const saltOrRounds = await bcrypt.genSalt();
+        const password = user.password;
+        const hash = await bcrypt.hash(password, saltOrRounds);
+
+        return await this.userRepository.save({
+            ...user,
+            password: hash,
+        });
     }
 }

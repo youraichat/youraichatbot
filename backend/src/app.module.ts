@@ -12,7 +12,7 @@ import { SettingModule } from "@modules/setting/setting.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { MulterModule } from "@nestjs/platform-express";
-import { FeedbackModule } from './modules/feedback/feedback.module';
+import { FeedbackModule } from '@modules/feedback/feedback.module';
 
 @Module({
     imports: [

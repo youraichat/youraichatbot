@@ -28,6 +28,13 @@ async function bootstrap() {
     await app.listen(process.env.PORT || 5000);
 }
 
+async function seed() {
+//
+}
+
+seed();
+
+
 bootstrap()
     .then(() => {
         console.log("SERVER IS RUNNING ON 5000 PORT");

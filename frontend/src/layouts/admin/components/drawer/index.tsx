@@ -1,19 +1,15 @@
 import React, {FC} from 'react';
-import {Avatar, IconButton, Stack, Typography} from "@mui/material";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import {Avatar, Stack, Typography} from "@mui/material";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import ListItemText from "@mui/material/ListItemText";
 import {CSSObject, styled, Theme, useTheme} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import DrawerHeader from "./header";
-import {AutoFixHigh, BarChart, DocumentScanner, Logout, PeopleAlt, Settings, ThumbUpAlt} from "@mui/icons-material";
+import {AutoFixHigh, Logout, PeopleAlt, Settings, ThumbUpAlt} from "@mui/icons-material";
 import {logoutFx} from "@/model/auth/effect";
 import {useRouter} from "next/router";
 import {USER_ROLE} from "@/utils/types/user.type";
@@ -41,25 +37,25 @@ const AdminLayoutDrawer: FC<Props> = (props) => {
         {
             id: 'users',
             title: 'Users',
-            link: "/backend/users/",
+            link: "/admin/users/",
             icon: <PeopleAlt/>,
 
         },
         {
             id: 'prompts',
-            link: "/backend/prompt/",
+            link: "/admin/prompt/",
             icon: <AutoFixHigh/>,
             title: 'Prompts'
         },
         {
             id: 'prompts',
-            link: "/backend/feedback/",
+            link: "/admin/feedback/",
             icon: <ThumbUpAlt/>,
             title: 'Feedback'
         },
         {
             id: 'settings',
-            link: "/backend/settings/",
+            link: "/admin/settings/",
             icon: <Settings/>,
             title: 'Settings'
         }
@@ -68,7 +64,7 @@ const AdminLayoutDrawer: FC<Props> = (props) => {
     const userMenus = [
         {
             id: 'prompts',
-            link: "/backend/prompt/",
+            link: "/admin/prompt/",
             icon: <AutoFixHigh/>,
             title: 'Prompts'
         },

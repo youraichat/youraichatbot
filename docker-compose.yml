@@ -1,19 +1,30 @@
 version: '3.8'
 
 services:
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASS}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_ALLOW_EMPTY_PASSWORD: true
+
     flowise:
-        build: ./flowise
         image: flowiseai/flowise
         restart: always
         environment:
             - PORT=${FLOWISE_PORT}
+            - PASSPHRASE=${PASSPHRASE}
             - FLOWISE_USERNAME=${FLOWISE_USERNAME}
             - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
+            - DEBUG=${DEBUG}
             - DATABASE_PATH=${DATABASE_PATH}
             - APIKEY_PATH=${APIKEY_PATH}
+            - SECRETKEY_PATH=${SECRETKEY_PATH}
+            - LOG_LEVEL=${LOG_LEVEL}
             - LOG_PATH=${LOG_PATH}
             - EXECUTION_MODE=${EXECUTION_MODE}
-            - DEBUG=${DEBUG}
         ports:
             - '${FLOWISE_PORT}:${FLOWISE_PORT}'
         volumes:
@@ -39,6 +50,12 @@ services:
             - SMTP_PASS=${SMTP_PASS}
             - MAIL_FROM=${MAIL_FROM}
             - JWT_SECRET=${JWT_SECRET}
+            - DEFAULT_EMAIL=${DEFAULT_ADMIN_EMAIL}
+            - DEFAULT_FN=${DEFAULT_ADMIN_FIRSTNAME}
+            - DEFAULT_LN=${DEFAULT_ADMIN_LASTNAME}
+            - DEFAULT_PASS=${DEFAULT_ADMIN_PASSWORD}
+        depends_on:
+            - db
         ports:
             - '${BACKEND_PORT}:${BACKEND_PORT}'
 
@@ -53,10 +70,3 @@ services:
         ports:
             - '${FRONTEND_PORT}:${FRONTEND_PORT}'
 
-
-    db:
-        image: mysql
-        command: --default-authentication-plugin=mysql_native_password
-        restart: always
-        environment:
-            - MYSQL_ROOT_PASSWORD=${DB_PASS}

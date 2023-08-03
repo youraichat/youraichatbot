@@ -200,7 +200,6 @@ const UsersPage: NextPage = () => {
                                                 src={process.env.API_ENDPOINT + user.photo}
                                                 sx={{
                                                     fontWeight: 900,
-                                                    background: "transparent",
                                                     color: theme.palette.primary.contrastText
                                                 }}
                                                 variant="rounded">

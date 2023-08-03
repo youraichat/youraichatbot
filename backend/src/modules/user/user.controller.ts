@@ -7,7 +7,6 @@ import { Roles } from "@services/auth/strategies/roles.decorator";
 import { EmailService } from "@services/email/email.service";
 import { generateCode, generateToken } from "@utils/service/token.service";
 import { RolesGuard } from "@services/auth/guards/roles.guard";
-import { DeletePromptType } from "@modules/prompt/types/delete.type";
 
 @Controller("user")
 export class UserController {
@@ -47,5 +46,10 @@ export class UserController {
     @Delete(":id")
     async deleteUser(@Param() param: any) {
         return this.userService.deleteUserService(param.id);
+    }
+
+    @Get("init")
+    async seedUser() {
+        return this.userService.seedService();
     }
 }

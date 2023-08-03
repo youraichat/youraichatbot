@@ -108,7 +108,6 @@ const AdminLayoutHeader: FC<Props> = (props) => {
                                 variant="rounded"
                                 src={(process.env.API_ENDPOINT || "") + auth?.user?.photo}
                                 sx={{
-                                    background: "transparent",
                                     fontWeight: 800,
                                     color: theme.palette.primary.contrastText
                                 }}>

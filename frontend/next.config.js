@@ -17,7 +17,10 @@ const nextConfig = {
         ]
     },
     env: {
-        API_ENDPOINT: process.env.API_ENDPOINT
+        API_ENDPOINT: process.env.API_ENDPOINT || "http://localhost:5000"
+    },
+    publicRuntimeConfig: {
+        API_ENDPOINT: process.env.API_ENDPOINT || "http://localhost:5000"
     }
 }
 
